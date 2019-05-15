@@ -1,0 +1,155 @@
+mkdir epm-wb2c-2019
+git init
+获取master代码：
+git clone git@gitcn.epam.com:epm-wb2c/wechat-show-service-ui.git
+获取分支dev-2019代码：
+git clone -b dev-2019 git@gitcn.epam.com:epm-wb2c/wechat-show-service-ui.git
+
+比如 sc/ruby_client（其中 sc 是贡献该项工作的人名称的简写）。 你应该记得，可以使用如下方式基于 master 分支建立特性分支
+$ git branch sc/ruby_client master
+或者如果你同时想立刻切换到新分支上的话，可以使用 checkout -b 选项：
+git checkout -b sc/ruby_client master
+
+如何提交代码？
+1. 在github上新建一个项目，同时会自动生成一个SSH或者HTTPS
+2. 通过命令git clone下载项目到本地
+3. 通过命令添加/删除文件到远程：
+	git add hello*
+	git rm test //删除文件夹
+	git commit -m "comment..."
+	git pull
+	git push origin master -f
+	git push origin master
+	git push -u origin master
+	git push origin dev-2019
+	
+	
+放弃修改
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   angular/app/pages/common/app.header.html
+        modified:   angular/build/build.css
+        modified:   angular/build/build.js
+        modified:   angular/games/car/js/screen_paoma_free.js
+        modified:   angular/public/css/style.css
+        modified:   angular/public/js/global.js
+        modified:   angular/webpack.config.js
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+D:\gitprojects\epm-wb2c-2019\wechat-show-service-ui (dev-2019 -> origin)
+λ git checkout angular/app/pages/common/app.header.html
+λ git checkout angular\*
+	
+比如 Jessica 向你发送了一封电子邮件，内容是在她的版本库中的 ruby-client 分支中有一个很不错的新功能，
+为了测试该功能，你可以将其添加为一个远程分支，并在本地检出：
+$ git remote add jessica git://github.com/jessica/myproject.git
+$ git fetch jessica
+$ git checkout -b rubyclient jessica/ruby-client
+
+
+vi readme.txt
+进入VIM编辑器,可以新建文件也可以修改文件
+如果这个文件，以前是没有的，则为新建，则下方有提示为新文件。
+按ESC键 跳到命令模式，然后：
+:w 保存文件但不退出vi 
+:w file 将修改另外保存到file中，不退出vi 
+:w! 强制保存，不推出vi 
+:wq 保存文件并退出vi 
+:wq! 强制保存文件，并退出vi 
+q: 不保存文件，退出vi 
+:q! 不保存文件，强制退出vi 
+:e! 放弃所有修改，从上次保存文件开始再编辑
+
+
+我们前面说过使用Git提交文件到版本库有两步：
+　　第一步：是使用 git add 把文件添加进去，实际上就是把文件添加到暂存区。
+			git add readme.txt
+　　第二步：使用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支上。
+			git commit -m "messages"
+查看文件的状态：
+			git status
+			git diff readme.txt
+			cat readme.txt
+			git log
+
+===========git回滚到任意版本==============================
+
+先显示提交的log
+git log
+commit b61e7e9f3eab130988da93f1a4c6e93467eb8a0b (HEAD -> master)
+Author: Jerny Liu <316774980@qq.com>
+Date:   Wed May 15 10:11:23 2019 +0800
+
+    init project
+回滚到指定的版本
+
+git reset --hard b61e7e9f3eab130988da93f1a4c6e93467eb8a0b
+
+回滚到以前的版本：
+			git reset --hard HEAD^
+			git reset --hard HEAD^^
+			git reset --hard HEAD~100
+			git reset --hard 版本号
+获取到版本号：
+			git reflog
+撤销修改（提交前）：
+	第一：如果我知道要删掉那些内容的话，直接手动更改去掉那些需要的文件，然后add添加到暂存区，最后commit掉。
+　　第二：我可以按以前的方法直接恢复到上一个版本。使用 git reset  --hard HEAD^
+	git checkout  -- file可以丢弃工作区的修改，恢复文件，把自己修改的内容全部撤销
+			git chekout -- readme.txt
+删除文件：
+			rm readme.txt
+		
+====================提交更改======================		
+第一种方法：（简单易懂）
+
+1、git add .（后面有一个点，意思是将你本地所有修改了的文件添加到暂存区）
+2、git commit -m""(引号里面是你的介绍，就是你的这次的提交是什么内容，便于你以后查看，这个是将索引的当前内容与描述更改的用户和日志消息一起存储在新的提交中)
+3、git pull origin master 这是下拉代码，将远程最新的代码先跟你本地的代码合并一下，如果确定远程没有更新，可以不用这个，最好是每次都执行以下，完成之后打开代码查看有没有冲突，并解决，如果有冲突解决完成以后再次执行1跟2的操作
+4、git push origin master 将代码推至远程就可以了
+
+ 
+
+第二种方法：
+
+1、git stash （这是将本地代码回滚值至上一次提交的时候，就是没有你新改的代码）
+2、git pull origin master（将远程的拉下来）
+3、git stash pop（将第一步回滚的代码释放出来，相等于将你修改的代码与下拉的代码合并）
+然后解决冲突，你本地的代码将会是最新的代码
+4、git add .
+5、git commit -m""
+6、git push origin master
+这几步将代码推至了远程
+最后再git pull origin master 一下，确保远程的全部拉下来，有的你刚提交完有人又提交了，你再拉一下会避免比的不是最新的问题
+
+================放弃本地文件的修改======================
+未使用 git add 缓存代码时。
+
+可以使用 git checkout -- filepathname (比如： git checkout -- readme.md  ，
+不要忘记中间的 “--” ，不写就成了检出分支了！！)。放弃所有的文件修改可以使用 git checkout .  命令。
+
+二，
+
+已经使用了  git add 缓存了代码。
+
+可以使用  git reset HEAD filepathname （比如： git reset HEAD readme.md）来放弃指定文件的缓存，放弃所以的缓存可以使用 git reset HEAD . 命令。
+
+此命令用来清除 git  对于文件修改的缓存。相当于撤销 git add 命令所在的工作。在使用本命令后，本地的修改并不会消失，而是回到了如（一）所示的状态。继续用（一）中的操作，就可以放弃本地的修改。
+
+
+=========================遇到的问题，提交后远程仓库没有文件==========================
+原来有个本地仓库，还有一个远程仓库
+使用 git commit -m "xxx"是将代码提交到了本地仓库，在本地仓库也有个版本控制中心
+使用git push origin master才是将本地仓库提交到远程仓库Enter passphrase for key '/c/Users/Administrator/.ssh/id_rsa':jernyliu
+本地仓库，还有一个暂存区，使用git add 命令，将文件提交到暂存区staging
+查看远程仓库地址 git remote -v
+查看所有的配置 git config --list
+
+windows下github 出现Permission denied (publickey).解决方法
+使用git Brash工具
+生成一个key,命令是: ssh-keygen -t rsa
+复制 public key到你账户的 list of SSH keys
+然后测试操作有没有成功：ssh -v git@github.com
