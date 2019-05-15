@@ -1,0 +1,397 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>jerny</groupId>
+  <artifactId>springmvc006</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <properties>
+	<junit.version>4.12</junit.version>
+	
+	<!-- web项目需要的3个基本的jar，前2个编译期间有效-->
+  	<servlet.version>3.1.0</servlet.version>
+  	<servlet.jsp.version>2.2</servlet.jsp.version>
+  	<servlet.jsp.jstl.version>1.2</servlet.jsp.jstl.version>
+	
+	<!-- spring springmvc -->
+	<jdk.version>1.8</jdk.version>
+  	<tomcat.maven.version>2.2</tomcat.maven.version>
+  	<commons.logging.version>1.2</commons.logging.version>
+  	<spring.version>4.1.6.RELEASE</spring.version>
+  	<jackson.version>2.9.8</jackson.version>
+	
+	<!-- Mybatis -->
+	<mybatis.version>3.5.1</mybatis.version>
+  	<slf4j.version>1.7.26</slf4j.version>
+  	<log4j.version>1.2.17</log4j.version>
+  	<log4j-.version>2.11.2</log4j-.version>
+  	<commons-logging.version>1.2</commons-logging.version>
+  	<cglib.version>3.2.11</cglib.version>
+	<asm.version>7.1</asm.version>
+  	<javassist.version>3.25.0-GA</javassist.version>
+  	<mysql.driver.version>8.0.15</mysql.driver.version>
+	
+	<!-- hibernate required jars -->
+	<hibernate.version>5.2.17.Final</hibernate.version>
+  	<antlr.version>2.7.7</antlr.version>
+  	<classmate.version>1.3.0</classmate.version>
+  	<dom4j.version>1.6.1</dom4j.version>
+  	<hibernate-commons-annotations.version>5.0.1.Final</hibernate-commons-annotations.version>
+  	<hibernate-jpa-2.1-api.version>1.0.0.Final</hibernate-jpa-2.1-api.version>
+  	<javassist.version>3.22.0-GA</javassist.version>
+  	<jandex.version>2.0.3.Final</jandex.version>
+  	<jboss-logging.version>3.3.1.Final</jboss-logging.version>
+  	<jboss-transaction-api_1.2_spec.version>1.0.1.Final</jboss-transaction-api_1.2_spec.version>
+	
+	<!-- 二级缓存 hibernate-ehcache, ehcache, slf4j -->
+  	<hibernate-ehcache.version>5.4.2.Final</hibernate-ehcache.version>
+  	<ehcache.version>3.7.1</ehcache.version>
+  	<slf4j.version>1.7.26</slf4j.version>
+	
+	<druid.version>1.1.16</druid.version>
+	
+	<!-- spring-data redis -->
+	<!-- 1.6.0.RELEASE  2.2  2.7.2 -->
+	<spring-data-redis.version>1.6.0.RELEASE</spring-data-redis.version>
+	<commons-pool2.version>2.2</commons-pool2.version>
+	<jedis.version>2.7.2</jedis.version>
+	
+  </properties>
+  
+  <dependencies>
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>${junit.version}</version>
+	    <scope>test</scope>
+	</dependency>
+	<!-- web项目需要的3个基本的jar，前2个编译期间有效-->
+  	<dependency>
+  		<groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>${servlet.version}</version>
+	    <scope>provided</scope>
+  	</dependency>
+	<dependency>
+	    <groupId>javax.servlet.jsp</groupId>
+	    <artifactId>jsp-api</artifactId>
+	    <version>${servlet.jsp.version}</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	    <groupId>javax.servlet.jsp.jstl</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>${servlet.jsp.jstl.version}</version>
+	</dependency>
+	
+	<!--log-->
+	<dependency>
+	    <groupId>commons-logging</groupId>
+	    <artifactId>commons-logging</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	
+	<!-- spring 核心包 -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-beans</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-expression</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	<!-- spring web -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	<!-- spring 整合数据库 -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	<!-- spring aop -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aop</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aspects</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>aopalliance</groupId>
+		<artifactId>aopalliance</artifactId>
+		<version>1.0</version>
+	</dependency>
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjrt</artifactId>
+		<version>1.9.3</version>
+	</dependency>
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+		<version>1.9.3</version>
+	</dependency>
+
+	<!-- spring test -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	<!-- 使用ResponseBody注解依赖的包  -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>${jackson.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-core</artifactId>
+	    <version>${jackson.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-annotations</artifactId>
+	    <version>${jackson.version}</version>
+	</dependency>
+	
+	<!-- mybatis -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis</artifactId>
+	    <version>${mybatis.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>${mysql.driver.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>cglib</groupId>
+	    <artifactId>cglib</artifactId>
+	    <version>${cglib.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.ow2.asm</groupId>
+	    <artifactId>asm</artifactId>
+	    <version>${asm.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.javassist</groupId>
+	    <artifactId>javassist</artifactId>
+	    <version>${javassist.version}</version>
+	</dependency>
+	
+	<!-- log -->
+	<dependency>
+	    <groupId>log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>${log4j.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	    <version>${log4j-.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-api</artifactId>
+	    <version>${log4j-.version}</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-api</artifactId>
+	    <version>${slf4j.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-log4j12</artifactId>
+	    <version>${slf4j.version}</version>
+	    <scope>test</scope>
+	</dependency>		
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>${hibernate.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>antlr</groupId>
+	    <artifactId>antlr</artifactId>
+	    <version>${antlr.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml</groupId>
+	    <artifactId>classmate</artifactId>
+	    <version>${classmate.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>dom4j</groupId>
+	    <artifactId>dom4j</artifactId>
+	    <version>${dom4j.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.hibernate.common</groupId>
+	    <artifactId>hibernate-commons-annotations</artifactId>
+	    <version>${hibernate-commons-annotations.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.hibernate.javax.persistence</groupId>
+	    <artifactId>hibernate-jpa-2.1-api</artifactId>
+	    <version>${hibernate-jpa-2.1-api.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.javassist</groupId>
+	    <artifactId>javassist</artifactId>
+	    <version>${javassist.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.jboss</groupId>
+	    <artifactId>jandex</artifactId>
+	    <version>${jandex.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.jboss.logging</groupId>
+	    <artifactId>jboss-logging</artifactId>
+	    <version>${jboss-logging.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.jboss.spec.javax.transaction</groupId>
+	    <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+	    <version>${jboss-transaction-api_1.2_spec.version}</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-ehcache</artifactId>
+	    <version>${hibernate-ehcache.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.ehcache</groupId>
+	    <artifactId>ehcache</artifactId>
+	    <version>${ehcache.version}</version>
+	</dependency>
+	
+	<!-- hibernate JPA -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-entitymanager</artifactId>
+		<version>${hibernate.version}</version>
+	</dependency>
+	
+	<!-- spring data jpa -->
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-jpa</artifactId>
+		<version>2.1.6.RELEASE</version>
+	</dependency>
+
+	
+	<!-- 数据库连接池 c3p0 -->
+	<dependency>
+		<groupId>com.mchange</groupId>
+		<artifactId>c3p0</artifactId>
+		<version>0.9.5.4</version>
+	</dependency>
+	<dependency>
+		<groupId>com.mchange</groupId>
+		<artifactId>mchange-commons-java</artifactId>
+		<version>0.2.15</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-c3p0</artifactId>
+		<version>${hibernate.version}</version>
+	</dependency>
+	
+	<!-- druid 数据库连接池 -->
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>druid</artifactId>
+		<version>${druid.version}</version>
+	</dependency>
+	
+	<!-- spring data redis -->
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-redis</artifactId>
+		<version>${spring-data-redis.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-pool2</artifactId>
+		<version>${commons-pool2.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>redis.clients</groupId>
+		<artifactId>jedis</artifactId>
+		<version>${jedis.version}</version>
+	</dependency>
+  </dependencies>
+  
+  <build>
+  	<plugins>
+  	    <!-- 解决Dynamic Web Module 3.0 requires Java 1.6 or newer -->
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.1</version>
+			<configuration>
+				<source>${jdk.version}</source>
+				<target>${jdk.version}</target>
+			</configuration>
+  		</plugin>
+  		<plugin>
+  			<artifactId>tomcat7-maven-plugin</artifactId>
+  			<groupId>org.apache.tomcat.maven</groupId>
+  			<version>${tomcat.maven.version}</version>
+  			<configuration>
+  				<port>8081</port>
+  				<path>/demo</path>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+</project>

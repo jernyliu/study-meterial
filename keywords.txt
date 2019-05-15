@@ -1,0 +1,89 @@
+restfull json jakson.jar
+@RestController
+@ResponseBody
+======================
+数据库连接池 c3p0 druid(alibaba)
+datasource
+sessionFactory
+
+TransactionManager
+==================
+
+spring boot
+继承父项目
+pom中添加启动器 spring-boot-starter-* 44种
+spring-boot-starter-web 包含spring mvc
+
+thymLeaf前端el
+===================================
+mybatis orm 封装了jdbc
+mybatis.xml typeAlias
+  datasource
+  
+  *Mapper.xml
+  *Mapper.java接口  jdk动态代理生成实现类
+ 
+resultType parameterType auto mapping   ---别名方式`teacher.name`
+resultMap
+
+SqlSession
+SqlSessionFactory
+=========================
+Hibernate orm jdbc
+hibernate.cfg.xml
+*.hbm.xml 或者注解形式
+*.java
+
+association关联关系 reverse cascade
+
+jpa entitymanager
+==================================
+service iptables stop把虚拟机的防火墙给关了
+
+
+安装：3.0版本
+$ wget http://redis.googlecode.com/files/redis-2.2.7.tar.gz
+$ tar xzf redis-2.2.7.tar.gz
+$ cp -r redis-2.2.7 /usr/local/redis
+$ cd /usr/local/redis
+$ make
+$ make install 
+
+
+#redis-server：Redis 服务器的 daemon 启动程序
+#redis-cli：Redis 命令行操作工具。当然，你也可以用 telnet 根据其纯文本协议来操作
+#redis-benchmark：Redis 性能测试工具，测试 Redis 在你的系统及你的配置下的读写性能
+$redis-benchmark -n 100000 –c 50 #模拟同时由 50 个客户端发送 100000 个 SETs/GETs 查
+11
+询
+# # # # redis-check-aof：更新日志检查
+#redis-check-dump：本地数据库检查
+
+vim redis.conf （daemonize设置为yes，后置启动）
+$cp redis.conf /etc/redis.conf（这句可以不用）
+
+ps -ef|grep redis查看是否有redis服务和端口
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

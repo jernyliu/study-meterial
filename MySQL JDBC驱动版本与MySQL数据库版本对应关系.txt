@@ -1,0 +1,6 @@
+Connector/J 5.1 支持Mysql 4.1、Mysql 5.0、Mysql 5.1、Mysql 6.0 alpha这些版本。
+Connector/J 5.0 支持MySQL 4.1、MySQL 5.0 servers、distributed transaction (XA)。
+Connector/J 3.1 支持MySQL 4.1、MySQL 5.0 servers、MySQL 5.0 except distributed transaction (XA) support。
+Connector/J 3.0 支持MySQL 3.x or MySQL 4.1。
+
+by Shawn Chen，2018.3.19日，下午。

@@ -1,0 +1,13 @@
+idea 打印快捷键 sout
+
+idea使用junit：
+idea安装目录中 hamcrest-core.jar和junit4.12.jar 
+
+linux:
+远程拷贝文件
+scp redis.conf 192.168.85.129:/usr/local/redis5
+
+vim redis.conf
+查找:/slave 按n查看下一个
+
+kill 线程号

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/test_jdbc"
+		username="root"
+		password="root"
+		maxActive="20"
+		maxIdle="10"
+		maxWait="10000"
+		name="test"
+		auth="Container"
+		type="javax.sql.DataSource"
+		/>
+</Context>
