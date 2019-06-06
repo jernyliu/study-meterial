@@ -1,0 +1,64 @@
+在Vue生命周期的钩子函数created中进行http异步请求数据，在mounted使用数据
+按照vue声明周期函数的执行顺序，肯定是先执行created，然后执行mounted，
+但是created里面是一个异步请求，而且异步请求的数据时在mounted执行结束之后才获取的
+
+我有一个项目就遇到这个问题：
+我想把异步请求的数据传给一个子组件，那么子组件用props属性接收，然后我在子组件的data函数中
+定义一个变量，把props中的数据赋值给它。然后我就在生命周期函数中利用这个变量做一些初始化操作，
+但是问题来了，这个变量的值为空
+
+后来我的解决办法是，在watch属性中监听这个变量的值，如果有变化就会执行监听函数，在这个监听函数中
+做一些变量的初始化工作，问题就这样解决了
+
+另外一个解决办法是：
+在父组件中用v-if判断异步请求的数据的长度或者是否为null，这样数据加载完成后再加载子组件
+
+***************************************
+
+还有一个问题，组件中props中接收的参数如果是一个对象或者数组，那么在data函数中定义一个变量，
+并且通过等号的形式把props中的参数值赋给这个变量，那么在其他函数中操作data中的变量时，props
+中的值也会相应变化
+
+原因是，这两个变量指向同一个地址，也就是同一个引用
+
+解决办法是，在data函数中通过定义一个新的对象，然后props中的值赋给这个对象，举个例子：
+props中的参数是 arr， 那么我在data函数中，定义一个myArr变量，通过 [...arr]拷贝一个数组的形式赋给myArr
+
+********************************************
+Vue中{__ob__: observer} 取值方法
+通过forEach，遍历数组
+arr.forEach(el => {
+	el.id
+	或者el['id']
+})
+
+*****************************************
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+***********************************************
+前端调用的接口是跨域的，而且需要认证
+前端需要发送一个post请求，把用户名，密码一起发送过去，服务器会返回一个token
+前端得到了这个token后就可以请求数据了
+问题是，每次发送请求之前都要发送post请求获取认证，这样比较冗余，有给服务器带来压力
+解决办法是：
+使用vuex，把这个token放在数据仓库state中，当认证通过，就会通过mutation方法设置state中的token值
+由于post是异步操作的，而mutation方法都是同步的，这时就使用vuex的action属性，
+把异步操作放在action中的一个方法里面，然后commit mutation。
+在App.vue中的created钩子函数中调用action的异步方法，
+然后再App.vue中的computed中获得数据仓库中的token值
+
+*************************************************
+
+图片懒加载
+当一个页面显示的图片比较多时，而且有滚动条，那么这个时候可以使用
+图片懒加载插件，vue-lazyload，页面滚动到可视区域才会加载图片
+步骤：
+	1. npm install vue-lazyload --save
+	2. main.js中
+		import VueLazyLoad from 'vue-lazyload'
+		Vue.use(VueLazyLoad, {
+		  error: require('./common/images/error.png'),
+		  loading: require('./common/images/loading.png')
+		})
+	3. <img v-lazy="item.singer_pic" alt="">
